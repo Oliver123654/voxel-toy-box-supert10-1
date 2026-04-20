@@ -25,6 +25,9 @@ export interface TemplateSourceRef {
   type: TemplateSourceType;
   ref: string;
   variantOfTemplateId?: string;
+  generatorPath?: string;
+  capabilities?: Record<string, boolean>;
+  estimatedVoxelCount?: number;
 }
 
 export interface TemplateMetadata {
@@ -46,6 +49,7 @@ export interface TemplateMetadata {
   rebuildSuitability: RebuildSuitability;
   priority: number;
   status: TemplateStatus;
+  description?: string;
 }
 
 export interface TemplateRegistryEntry {

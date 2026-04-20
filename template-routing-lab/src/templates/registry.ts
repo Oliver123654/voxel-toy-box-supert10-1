@@ -1,7 +1,11 @@
 import type { TemplateRegistryEntry, TemplateSummary } from '../contracts/index.js';
+import { EXPANSION_TEMPLATE_REGISTRY } from './expansionTemplates.js';
 import { SEED_TEMPLATE_REGISTRY } from './seedTemplates.js';
 
-export const TEMPLATE_REGISTRY: TemplateRegistryEntry[] = [...SEED_TEMPLATE_REGISTRY];
+export const TEMPLATE_REGISTRY: TemplateRegistryEntry[] = [
+  ...SEED_TEMPLATE_REGISTRY,
+  ...EXPANSION_TEMPLATE_REGISTRY,
+];
 
 export const ACTIVE_TEMPLATE_REGISTRY: TemplateRegistryEntry[] = TEMPLATE_REGISTRY.filter(
   (entry) => entry.metadata.status === 'active'
