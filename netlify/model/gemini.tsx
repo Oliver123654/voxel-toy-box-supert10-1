@@ -4,7 +4,7 @@ import type {
   GenerationOptions,
   ModelIntent,
   VoxelData,
-} from '@/types';
+} from '../../types';
 import {
   buildModelIntent,
   getIntentPrompt,
@@ -12,7 +12,19 @@ import {
   getVoxelPromptFromIntent,
 } from './modelCallTypes';
 
-const createGeminiClient = () => new GoogleGenAI({});
+const createGeminiClient = () => {
+  const apiKey =
+    process.env.GEMINI_API_KEY ||
+    process.env.GOOGLE_GENERATIVE_AI_API_KEY ||
+    process.env.GOOGLE_API_KEY;
+
+  if (!apiKey) {
+    throw new Error('Missing GEMINI_API_KEY for server-side Gemini calls.');
+  }
+
+  return new GoogleGenAI({ apiKey });
+};
+
 const model = 'gemini-2.5-flash';
 
 function getVoxelSchema() {
