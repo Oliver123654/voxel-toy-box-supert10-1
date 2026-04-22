@@ -14,7 +14,7 @@
       "node"
     ],
     "moduleResolution": "node",
-    "moduleDetection": "force",
+    
     "allowJs": true,
     "jsx": "react-jsx",
         "baseUrl": ".",
