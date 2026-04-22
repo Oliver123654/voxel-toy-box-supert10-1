@@ -2,8 +2,8 @@ import type {
   BackendGenerationResponse,
   GenerationOptions,
   VoxelData,
-} from '../../../types';
-
+}import { VoxelData } from '../../../types';
+import '../../../services/endpoints/api';
 const DEFAULT_SYSTEM_CONTEXT = [
   'You are a creative voxel art generator.',
   'Always return valid JSON only.',
