@@ -14,9 +14,10 @@ const DEFAULT_SYSTEM_CONTEXT = [
 export async function generateVoxelModel(
   prompt: string,
   options: GenerationOptions,
-  mode: 'fast' | 'expert'
+  mode: 'fast' | 'expert',
+  endpoint = 'lego-gemini'
 ): Promise<BackendGenerationResponse & { voxels: VoxelData[] }> {
-  const response = await api<BackendGenerationResponse>('lego-gemini', {
+  const response = await api<BackendGenerationResponse>(endpoint, {
     method: 'POST',
     body: JSON.stringify({
       systemContext: DEFAULT_SYSTEM_CONTEXT,
