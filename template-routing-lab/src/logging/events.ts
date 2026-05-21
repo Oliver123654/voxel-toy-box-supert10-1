@@ -1,10 +1,12 @@
 import type {
   FeedbackLogEvent,
   FeedbackSignal,
+  PromotionEvaluation,
   RankedRetrievalResult,
   RetrievalLogEvent,
   RouteLogEvent,
   RoutingEvaluation,
+  TemplatePromotionLogEvent,
 } from '../contracts/index.js';
 
 export function createRetrievalLogEvent(
@@ -53,5 +55,27 @@ export function createFeedbackLogEvent(input: {
     routeDecision: input.routeDecision,
     templateId: input.templateId,
     feedback: input.feedback,
+  };
+}
+
+export function createTemplatePromotionLogEvent(
+  evaluation: PromotionEvaluation
+): TemplatePromotionLogEvent {
+  return {
+    eventType: 'template_promotion',
+    createdAt: evaluation.createdAt,
+    templateId: evaluation.templateId,
+    templateName: evaluation.templateName,
+    category: evaluation.category,
+    fromStatus: evaluation.fromStatus,
+    toStatus: evaluation.toStatus,
+    decision: evaluation.decision,
+    promotionScore: evaluation.totalScore,
+    scoreBreakdown: evaluation.scoreBreakdown,
+    geometrySource: evaluation.geometry.sourceRef,
+    positivePrompts: evaluation.positiveChecks.map((check) => check.prompt),
+    negativePrompts: evaluation.negativeChecks.map((check) => check.prompt),
+    passedChecks: evaluation.passedChecks,
+    failedChecks: evaluation.failedChecks,
   };
 }

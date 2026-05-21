@@ -8,7 +8,8 @@
     "test": "tsc -p tsconfig.test.json && node --experimental-specifier-resolution=node .tmp-test/tests/run-tests.js",
     "experiment:feedback:memory": "tsx src/experiments/apiFeedbackDatabaseExperiment.ts",
     "experiment:db:check": "tsx src/experiments/postgresConnectivityCheck.ts",
-    "experiment:replay:compare": "tsx src/experiments/replayComparison.ts"
+    "experiment:replay:compare": "tsx src/experiments/replayComparison.ts",
+    "experiment:promotion": "tsx src/experiments/promotionAlgorithmExperiment.ts"
   },
   "devDependencies": {
     "@types/node": "^24.7.2",
