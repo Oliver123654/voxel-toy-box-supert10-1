@@ -1,6 +1,7 @@
 import type {
   FeedbackSignal,
   LogStorageAdapter,
+  PromotionEvaluation,
   RankedRetrievalResult,
   RoutingEvaluation,
 } from '../contracts/index.js';
@@ -8,6 +9,7 @@ import {
   createFeedbackLogEvent,
   createRetrievalLogEvent,
   createRouteLogEvent,
+  createTemplatePromotionLogEvent,
 } from './events.js';
 
 export class TemplateRoutingLogger {
@@ -35,6 +37,10 @@ export class TemplateRoutingLogger {
         feedback: input.feedback,
       })
     );
+  }
+
+  logTemplatePromotion(evaluation: PromotionEvaluation): void {
+    this.storage.append(createTemplatePromotionLogEvent(evaluation));
   }
 
   listEvents() {

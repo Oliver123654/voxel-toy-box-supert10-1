@@ -1,9 +1,11 @@
 import type { PromptMode } from './retrieval.js';
+import type { PromotionDecision, PromotionScoreBreakdown } from './promotion.js';
 import type { RouteDecision } from './routing.js';
+import type { TemplateBaseCategory, TemplateStatus } from './template.js';
 
 export type FeedbackSignal = 'helpful' | 'not_helpful';
 
-export type LogEventType = 'retrieval' | 'route' | 'feedback';
+export type LogEventType = 'retrieval' | 'route' | 'feedback' | 'template_promotion';
 
 export interface CandidateScoreSnapshot {
   templateId: string;
@@ -41,10 +43,29 @@ export interface FeedbackLogEvent {
   feedback: FeedbackSignal;
 }
 
+export interface TemplatePromotionLogEvent {
+  eventType: 'template_promotion';
+  createdAt: string;
+  templateId: string;
+  templateName: string;
+  category: TemplateBaseCategory;
+  fromStatus: TemplateStatus;
+  toStatus: TemplateStatus;
+  decision: PromotionDecision;
+  promotionScore: number;
+  scoreBreakdown: PromotionScoreBreakdown;
+  geometrySource: string;
+  positivePrompts: string[];
+  negativePrompts: string[];
+  passedChecks: string[];
+  failedChecks: string[];
+}
+
 export type TemplateRoutingLogEvent =
   | RetrievalLogEvent
   | RouteLogEvent
-  | FeedbackLogEvent;
+  | FeedbackLogEvent
+  | TemplatePromotionLogEvent;
 
 export interface LogStorageAdapter {
   append(event: TemplateRoutingLogEvent): void;
