@@ -1,3 +1,4 @@
+//Chen Zhuo (Add saveGenerationRecord function for logging)
 import type { GenerationOptions, TemplateMatchResult } from '../../types';
 import { getDatabaseReport, getDb } from './db.js';
 
