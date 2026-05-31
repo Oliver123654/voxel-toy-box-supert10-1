@@ -1,3 +1,4 @@
+// Chen Zhuo (Implemented voxel post-processing, including validation, repair, centering, statistics calculation, and warning generation.)
 import type {
   GenerationMetadata,
   GenerationStats,
