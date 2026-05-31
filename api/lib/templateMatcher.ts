@@ -15,7 +15,7 @@ const TEMPLATE_KEYWORDS: Record<string, string[]> = {
   Boat: ['boat', 'small boat', 'ship', 'fishing boat', 'rescue boat', 'watercraft'],
   House: ['house', 'home', 'cabin', 'cottage', 'small house'],
 };
-
+//Chen Zhuo (Implement template matching utility function.)
 export function inferTemplateMatch(prompt: string, intent?: ModelIntent): TemplateMatchResult {
   const searchText = `${prompt} ${intent?.subject ?? ''} ${(intent?.silhouetteKeywords ?? []).join(' ')}`
     .toLowerCase()
